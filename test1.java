@@ -141,3 +141,189 @@ public static void main(String[] args) {
    }
 
 }
+
+
+// https://www.pepcoding.com/resources/online-java-foundation/function-and-arrays/subsets-of-array-official/ojquestion
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+
+public static int binary(int num){
+     int res=0,pos=1;
+     while(num>0){
+        int rem=num%2;
+        res+=pos*rem;
+        pos*=10;
+        num/=2;
+     }
+     return res;
+}
+public static void main(String[] args) throws Exception {
+    // write your code here
+     
+    Scanner sc = new Scanner ( System.in);
+    int le = sc.nextInt();
+    int arr[]= new int [le];
+    //int idx=0;
+    for ( int i=0 ; i < le ; i ++){
+        arr[i]=sc.nextInt();
+    }
+    
+    for ( int i=0;i<Math.pow(2,le);i++){
+        int bin=binary(i);
+        // System.out.println(bin);
+        int length=le;
+        int tbin=bin;
+            int tn=le-1;
+        while(length>0){
+            int rem=tbin%10;
+            System.out.print((rem==1)?arr[tn]+" ":"- ");
+            tn--;
+            tbin/=10;
+            length--;
+        }
+        System.out.println();
+    }
+    // int d=(int)Math.pow(2,le);
+    // for ( int i=0;i<d;i++){
+    //     int temp=1,re=0,n=i;
+    //      while(n>0){
+    //       re=re+(n%2)*temp;
+    //       n=n/2;
+    //       temp*=10;}
+    //      // System.out.println(re);
+    
+       
+    //   String ans="";
+    //   int bre = re;
+    //   int idx=le-1,m=le-1;
+    //   while(m>=0){
+    //       int yes=bre%10;
+    //       bre=bre/10;
+        
+    //     if ( yes==0){
+    //         ans="-	"+ans;
+    //     }
+    //     else{
+    //         ans=arr[idx]+"	"+ ans;
+    //     }
+    //     idx--;m--;
+        
+    // }
+    // System.out.println(ans);
+    // }
+ 
+    }
+    
+}
+
+
+
+
+
+
+// https://leetcode.com/problems/long-pressed-name/
+class Solution {
+    public boolean isLongPressedName(String name, String typed) {
+        // if (name.length() > typed.length()) {
+    //   return false;
+    // }
+
+    // int i = 0;
+    // int j = 0;
+
+    // while (i < name.length() && j < typed.length()) {
+    //   if (name.charAt(i) == typed.charAt(j)) {
+    //     i++;
+    //     j++;
+    //   }
+    //   else if (i > 0 && name.charAt(i - 1) == typed.charAt(j)) {
+    //     j++;
+    //   }
+    //   else {
+    //     return false;
+    //   }
+    // }
+
+    // while (j < typed.length()) {
+    //   if (name.charAt(i - 1) != typed.charAt(j)) {
+    //     return false;
+    //   }
+    //   j++;
+    // }
+
+    // if (i < name.length()) {
+    //   return false;
+    // }
+    // else {
+    //   return true;
+    // }
+    
+    
+    if (name.length() > typed.length()) {
+      return false;
+    }
+
+    int i = 0;
+    int j = 0;
+    int count1 = 1;
+    int count2 = 1;
+
+    for (; i < name.length() - 1 ; i++) {
+      if (name.charAt(i) == name.charAt(i + 1)) {
+        count1++;
+      }
+      else {
+          int flag=0;
+        for (; j < typed.length() - 1 ; j++) {
+            flag=1;
+          if (typed.charAt(j) == typed.charAt(j + 1)) {
+            count2++;
+          }
+          else {
+              System.out.println(i+" "+j);
+                // System.out.println(count1 + " " + count2);
+            if (count1 > count2 || name.charAt(i) != typed.charAt(j)) {
+              return false;
+            }
+            else {
+              count1 = 1;
+              count2 = 1;
+            }
+              j++;
+              break;
+          }
+        }
+          if(flag==0)break;
+      }
+    }
+    System.out.println(i+" "+j);
+    if (name.charAt(i) != typed.charAt(j)) {
+      return false;
+    }
+    if(j<typed.length()-1){
+        while(j<=typed.length()-1){
+            if(name.charAt(i) != typed.charAt(j))return false;
+            j++;
+        }
+        
+    }
+        if(i<name.length()-1){
+            while(i<=name.length()-1){
+            if(name.charAt(i) != typed.charAt(j))return false;
+            i++;
+        }
+            
+        }
+    return true;
+    }
+}
+
+
+
+
