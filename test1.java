@@ -325,5 +325,95 @@ class Solution {
 }
 
 
+class Solution {
+  
+   
+        public int check(String s1, String s2) {
+        // String[] s1Arr = s1.split(" ");
+        // String[] s2Arr = s2.split(" ");
+            int flag=0;
+            String ss1="",ss2="";
+            for(int i=0;i<s1.length();i++){
+                char c= s1.charAt(i);
+                if(c==' '&& flag==0){
+                    flag=1;
+                    continue;
+                }
+                if(flag==1){
+                    ss1+=c;
+                }
+            }
+            for(int i=0;i<s2.length();i++){
+                char c= s2.charAt(i);
+                if(c==' '&& flag==0){
+                    flag=1;
+                    continue;
+                }
+                if(flag==1){
+                    ss1+=c;
+                }
+            }
+        return (ss1.compareTo(ss2) >0 )?1:(ss1.compareTo(ss2) ==0)?0:-1;
+    }
+
+    
+    // public static void swap(ArrayList <String> s, int i, int j){
+    //     String s1=s.get(i);
+    //     s.set(i,s.get(j));
+    //     s.set(j,s1);
+    // }
+    
+
+    // https://leetcode.com/problems/reorder-data-in-log-files/submissions/
+    public String[] reorderLogFiles(String[] logs) {
+        ArrayList<String>letter=new ArrayList<String>();
+        ArrayList<String>digit=new ArrayList<String>();
+        for (int i=0;i<logs.length;i++){
+            String temp = logs[i];
+            int flag=0;
+            for(int j=0;j<temp.length();j++){
+                char c=temp.charAt(j);
+                if(c==' '){
+                    if('a'<=temp.charAt(j+1) && temp.charAt(j+1)<='z'){
+                        letter.add(temp);
+                    }
+                    else{
+                        digit.add(temp);
+                    }
+                    break;
+                }
+            }
+        }
+
+          int i, j;
+         for (i = 0; i < letter.size()-1; i++)
+         for (j = 0; j < letter.size()-i-1; j++)
+         if (check(letter.get(j),letter.get(j+1))==1)   //>>
+             // swap()
+            Collections.swap(letter,j,j+1);
+        // else if(check(letter.get(j),letter.get(j+1))==0){
+        //     String[] s1Arr = letter.get(j).split(" ");
+        //     String[] s2Arr = letter.get(j+1).split(" ");
+        //        if ((s1Arr[0].compareTo(s2Arr[0]))>0)
+        //             Collections.swap(letter,j,j+1);
+        //        else
+        //            Collections.swap(letter,j+1,j);
+        // }
+
+        for(int k=0;k<digit.size();k++)
+            letter.add(digit.get(k));
+        System.out.println(letter);
+       
+        String [] ans=new String[letter.size()];
+        int k=0;
+        for(int l=0;l<letter.size();l++){
+            String s=letter.get(l);
+            ans[k]=s;
+            k++;
+        }
+        return ans;
+    }
+}
+
 
 
