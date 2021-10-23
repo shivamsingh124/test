@@ -415,5 +415,88 @@ class Solution {
     }
 }
 
+// https://classroom.pepcoding.com/resources/online-java-foundation/2d-arrays/wakanda-1-official/ojquestion
 
+ import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner sc=new Scanner ( System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+         int arr[][]=new int [n][m];
+    for(int k=0;k<n;k++){
+        for(int l=0;l<m;l++)
+        {
+            arr[k][l]=sc.nextInt();
+        }
+    }
+    
+        for ( int i=0;i<m; i++ ){
+            if(i%2==0){
+            for ( int j=0 ; j<n;j++){
+                 System.out.println(arr[j][i]);
+                
+            }}
+                
+            else if(i%2!=0){
+            for ( int j=n-1 ; j>=0;j--){
+                
+                System.out.println(arr[j][i]);
+            
+        }}
+    }
+
+}}
+
+
+
+// https://classroom.pepcoding.com/resources/online-java-foundation/function-and-arrays/ceil-floor-official/ojquestion
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+Scanner sc=new Scanner (System.in);
+int n=sc.nextInt();
+int a[]= new int [n];
+for ( int i=0;i<n;i++){
+    a[i]=sc.nextInt();
+}
+int f=sc.nextInt();
+int lo=0,hi=n-1,mid=0,floor=0,ceil=0;
+while(lo<=hi){
+    mid=(lo+hi)/2;
+    if(f==a[mid]){
+        ceil=floor=a[mid];
+        break;
+    }
+    
+    else if(f<a[mid]){
+        hi=mid-1;
+        ceil=a[mid];
+        
+    }
+    else if(f>a[mid]){
+        lo=mid+1;
+        floor=a[mid];
+    }
+    
+    
+    
+}
+System.out.println(ceil+"
+"+floor);
+
+
+
+ }
+
+}
 
